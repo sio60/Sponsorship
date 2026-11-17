@@ -1,13 +1,11 @@
 const invitation = document.querySelector('#invitation');
 const proposal = document.querySelector('#proposal');
-const declined = document.querySelector('#not-now');
 const noButton = document.querySelector('#no');
 const note = document.querySelector('#playful-note');
 let noCount = 0;
 function show(view) {
   invitation.hidden = view !== 'invitation';
   proposal.hidden = view !== 'proposal';
-  declined.hidden = view !== 'declined';
   window.scrollTo({ top: 0, behavior: 'instant' });
 }
 function openProposal() {
@@ -17,21 +15,15 @@ function openProposal() {
 show('invitation');
 document.querySelector('#back-to-invite').hidden = false;
 document.querySelector('#yes').addEventListener('click', openProposal);
-document.querySelector('#reopen').addEventListener('click', openProposal);
 noButton.addEventListener('click', () => {
   noCount += 1;
   const scales = [0.78, 0.55, 0.32, 0];
   noButton.style.transform = `scale(${scales[Math.min(noCount - 1, 3)]})`;
-  note.textContent = '참여하지 않으실 경우 아래 링크를 선택해 주세요.';
+  note.textContent = '제안 확인만으로 참여가 확정되지는 않습니다.';
   if (noCount >= 4) {
     noButton.hidden = true;
-    document.querySelector('#decline').focus({ preventScroll: true });
+    document.querySelector('#yes').focus({ preventScroll: true });
   }
-});
-document.querySelector('#decline').addEventListener('click', event => {
-  event.preventDefault();
-  show('declined');
-  document.querySelector('#reopen').focus({ preventScroll: true });
 });
 document.querySelector('#back-to-invite').addEventListener('click', () => {
   noCount = 0;
