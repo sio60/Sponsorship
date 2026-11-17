@@ -22,7 +22,7 @@ noButton.addEventListener('click', () => {
   noCount += 1;
   const scales = [0.78, 0.55, 0.32, 0];
   noButton.style.transform = `scale(${scales[Math.min(noCount - 1, 3)]})`;
-  note.textContent = ['앗, 조금만 더 생각해 주실래요?', '어라, 버튼이 작아지고 있어요.', '제안만 살짝 읽어보셔도 좋아요.', '버튼은 사라졌지만, 선택은 언제나 자유예요.'][Math.min(noCount - 1, 3)];
+  note.textContent = '참여하지 않으실 경우 아래 링크를 선택해 주세요.';
   if (noCount >= 4) {
     noButton.hidden = true;
     document.querySelector('#decline').focus({ preventScroll: true });
@@ -37,7 +37,7 @@ document.querySelector('#back-to-invite').addEventListener('click', () => {
   noCount = 0;
   noButton.hidden = false;
   noButton.style.transform = '';
-  note.textContent = '‘예’를 누르면 자세한 제안을 볼 수 있어요.';
+  note.textContent = '릴스 1편 제작·게시 · 총 협업비 100,000원';
   show('invitation');
   document.querySelector('#yes').focus({ preventScroll: true });
 });
@@ -49,7 +49,7 @@ document.querySelector('#copy-email').addEventListener('click', async () => {
   const status = document.querySelector('#email-status');
   try {
     await navigator.clipboard.writeText(recipient);
-    status.textContent = '이메일 주소를 복사했어요. Gmail에서 붙여 넣어 주세요.';
+    status.textContent = '이메일 주소가 복사되었습니다. Gmail에서 붙여 넣어 주세요.';
   } catch {
     status.textContent = `주소를 길게 눌러 복사해 주세요: ${recipient}`;
   }
